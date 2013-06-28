@@ -73,6 +73,7 @@ alias assumed='git ls-files -v | grep ^h | cut -c 3-'
 alias python27='python'
 alias pyclean='rm -f *pyc'
 alias py='env/bin/python'
+alias env='source env/bin/activate'
 alias json="python -mjson.tool"
 
 md() {
@@ -85,7 +86,7 @@ export CLICOLOR=1
 export LSCOLORS=BxHxFxDxCxegedabagacad
 export EDITOR=vi
 
-# FILE SYSTEM SEARCH AND JUMP #
+FILE SYSTEM SEARCH AND JUMP #
 bashconfig() {
     vi ~/.bash_profile
     source ~/.bash_profile
