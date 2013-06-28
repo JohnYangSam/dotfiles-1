@@ -3,11 +3,11 @@ alias home='j ~/'
 alias cis121='j ~/School/cis121/12fa/'
 alias school='j ~/School/'
 
-alias ..='go ..'
-alias ...='go ../../'
-alias ....='go ../../../'
-alias .....='go ../../../../'
-alias ......='go ../../../../../'
+alias ..='j ..'
+alias ...='j ../../'
+alias ....='j ../../../'
+alias .....='j ../../../../'
+alias ......='j ../../../../../'
 
 # BASH COMMANDS #
 alias topcmds='cat ~/.bash_history | sed "s|sudo ||g" | cut -d " " -f 1 | sort | uniq -c | sort -n'
@@ -42,6 +42,7 @@ alias assumed='git ls-files -v | grep ^h | cut -c 3-'
 alias python27='python'
 alias pyclean='rm -f *pyc'
 alias py='env/bin/python'
+alias env='source env/bin/activate'
 alias json="python -mjson.tool"
 
 # COLORS #
@@ -61,9 +62,14 @@ sshb() {
     ssh -i ~/.ec2/cis555.pem ec2-user@ec2-54-224-186-71.compute-1.amazonaws.com
 }
 
+sshu() {
+    #ssh -i ~/.ec2/login.pem ubuntu@$1
+    ssh -i ~/.ec2/login.pem ubuntu@ec2-107-22-127-103.compute-1.amazonaws.com
+}
+
 sshi() {
-    #ssh -i ~/.ec2/login.pem ec2-user@$1
-    ssh -i ~/.ec2/cis555.pem ec2-user@$1
+    ssh -i ~/.ec2/login.pem ec2-user@$1
+    #ssh -i ~/.ec2/cis555.pem ec2-user@$1
 }
 
 scpi-down() {
@@ -86,10 +92,6 @@ fs() {
 
 j() {
     $(jump.py $@) && pwd && ls
-}
-
-go() {
-    cd $1 2> /dev/null && ls || $EDITOR $1
 }
 
 slime() {
@@ -224,7 +226,8 @@ function seasprint() {
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-export PATH="$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin
+export PATH="$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin:/Applications/eclipse/android-sdk-macosx/platform-tools
+
 export PYTHONSTARTUP=/Users/JMow/.pythonrc
 export EC2_PRIVATE_KEY=/Users/JMow/.ec2/access.pem
 export EC2_CERT=/Users/JMow/.ec2/cert.pem
