@@ -1,3 +1,9 @@
+# Upthere #
+updrive() {
+    /Users/JMow/Code/upthere/upfs --username=jmow@upthere.com Skyline /Users/JMow/Code/upthere/skyline
+    /Users/JMow/Code/upthere/upfs --username=jmow@upthere.com ~upthere /Users/JMow/Code/upthere/updrive
+}
+
 # FILE JUMPS #
 alias home='j ~/'
 alias cis121='j ~/School/cis121/12fa/'
