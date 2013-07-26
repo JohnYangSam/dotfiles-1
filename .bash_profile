@@ -33,6 +33,7 @@ alias gitsearch='git rev-list --all | xargs git grep -F'
 alias stash='git stash'
 alias pull='git pull --rebase'
 alias push='git push'
+alias br='git branch'
 
 alias co='git checkout'
 alias cherry='git cherry-pick'
@@ -50,6 +51,11 @@ alias pyclean='rm -f *pyc'
 alias py='env/bin/python'
 alias env='source env/bin/activate'
 alias json="python -mjson.tool"
+
+md() {
+       python -m markdown $1 > markdown.html
+       open markdown.html
+}
 
 # COLORS #
 export CLICOLOR=1
