@@ -1,1 +1,13 @@
 .DS*
+.classpath
+.project
+Django-1.4.1/
+cv/
+djangobook.pdf
+examples/
+projects/
+snippets/
+workspace_class/
+workspace_projects/
+workspace_ta/
+Algorithms_Textbook
