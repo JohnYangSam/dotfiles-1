@@ -1,13 +1,43 @@
+# Upthere Android Env Setup #
+upthere_src=/Users/jmow/Code/upthere
+scripts=/Users/jmow/Code/dotfiles/scripts
+
+export ANDROID_SDK_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx
+export ANDROID_NDK_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-ndk-r8e
+export NDK_BASE=$ANDROID_NDK_HOME
+ulimit -n 10000
+fits() {
+	cd $upthere_src
+	./bin/rest_bridge
+}
+localfits() {
+	cd $upthere_src
+	./bin/rest_bridge --local_fits=true
+}
+upthere() {
+	launchctl unload ~/Library/LaunchAgents/com.upthere.rest_bridge.plist
+	launchctl load ~/Library/LaunchAgents/com.upthere.rest_bridge.plist
+}
+fuse() {
+	/Users/jmow/upfs --username=jmow@upthere.com ~upthere /Users/jmow/updrive
+	/Users/jmow/upfs --username=jmow@upthere.com Skyline /Users/jmow/skyline
+}
+
+logcat() {
+	cd $scripts
+	./colored_logcat.py $@
+}
+
 # FILE JUMPS #
 alias home='j ~/'
 alias cis121='j ~/School/cis121/12fa/'
 alias school='j ~/School/'
 
-alias ..='go ..'
-alias ...='go ../../'
-alias ....='go ../../../'
-alias .....='go ../../../../'
-alias ......='go ../../../../../'
+alias ..='j ..'
+alias ...='j ../../'
+alias ....='j ../../../'
+alias .....='j ../../../../'
+alias ......='j ../../../../../'
 
 # BASH COMMANDS #
 alias topcmds='cat ~/.bash_history | sed "s|sudo ||g" | cut -d " " -f 1 | sort | uniq -c | sort -n'
@@ -32,6 +62,7 @@ alias co='git checkout'
 alias cherry='git cherry-pick'
 alias ca='git commit -am'
 alias cm='git commit -m'
+alias br='git branch'
 
 # Git Assume/Unassume unchanged #
 alias assume='git update-index --assume-unchanged'
@@ -44,35 +75,15 @@ alias pyclean='rm -f *pyc'
 alias py='env/bin/python'
 alias json="python -mjson.tool"
 
+md() {
+	python -m markdown $1 > markdown.html
+	open markdown.html
+}
+
 # COLORS #
 export CLICOLOR=1
 export LSCOLORS=BxHxFxDxCxegedabagacad
 export EDITOR=vi
-
-# EC2 SSH/SCP IDENTITY #
-sshp() {
-    #ssh -i ~/.ec2/pokedex.pem ec2-user@pokedex.me
-    #ssh -i ~/.ec2/login.pem ec2-user@ec2-107-22-46-87.compute-1.amazonaws.com
-    #ssh -i ~/.ec2/cis555.pem ubuntu@ec2-75-101-168-199.compute-1.amazonaws.com
-    ssh -i ~/.ec2/cis555.pem ubuntu@54.235.148.12
-}
-
-sshb() {
-    ssh -i ~/.ec2/cis555.pem ec2-user@ec2-54-224-186-71.compute-1.amazonaws.com
-}
-
-sshi() {
-    #ssh -i ~/.ec2/login.pem ec2-user@$1
-    ssh -i ~/.ec2/cis555.pem ec2-user@$1
-}
-
-scpi-down() {
-    scp -i ~/.ec2/login.pem ec2-user@$1:$2 .
-}
-
-scpi-up() {
-    scp -i ~/.ec2/login.pem $2 ec2-user@$1:
-}
 
 # FILE SYSTEM SEARCH AND JUMP #
 bashconfig() {
@@ -86,10 +97,6 @@ fs() {
 
 j() {
     $(jump.py $@) && pwd && ls
-}
-
-go() {
-    cd $1 2> /dev/null && ls || $EDITOR $1
 }
 
 slime() {
@@ -156,17 +163,6 @@ mac() {
   done
 }
 
-cv()
-{
-    git checkout master;
-    xelatex cv.tex;
-    mv cv.pdf jasonmow.resume.2013.pdf;
-    git checkout personal;
-    xelatex cv.tex;
-    mv cv.pdf jasonmow.personal.resume.2013.pdf;
-    git checkout master
-}
-
 xpdf()
 {
     xelatex $1.tex;
@@ -177,16 +173,6 @@ pdf()
 {
     pdflatex $1.tex;
     open $1.pdf
-}
-
-ssheniac()
-{
-	ssh jmow@minus.seas.upenn.edu
-}
-
-ssh121()
-{
-	ssh cis121@minus.seas.upenn.edu
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
@@ -202,35 +188,10 @@ function server() {
     python -m SimpleHTTPServer "$port"
 }
 
-sshtcr()
-{
-	ssh thecampusrep@thecampusrep.webfactional.com
-}
-
-sshlinode()
-{
-    ssh jmow@198.74.57.12
-}
-
-sshlinoderoot()
-{
-    ssh root@198.74.57.12
-}
-
-# Usage: seasprint foo.pdf
-function seasprint() {
-   cat "$1" | ssh jmow@minus.seas.upenn.edu lpr -P169
-}
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export PATH="$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin
-export PYTHONSTARTUP=/Users/JMow/.pythonrc
-export EC2_PRIVATE_KEY=/Users/JMow/.ec2/access.pem
-export EC2_CERT=/Users/JMow/.ec2/cert.pem
-
-fortune -s -a | cowthink -f dragon-and-cow | lolcat
-# fortune | cowsay -s | lolcat
+export PATH=/usr/local/bin:/Users/jmow/Code/dotfiles/scripts:/Users/jmow/Code/android_tools_macosx_r8e/android-ndk-r8e:/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx/platform-tools:/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx/tools:"$PATH"
+export ANDROID_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-ndk-r8e
 
 set -o vi
 alias :q='clear'
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
