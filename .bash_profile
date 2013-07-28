@@ -1,5 +1,5 @@
 # Upthere #
-updrive() {
+upfuse() {
     /Users/JMow/Code/upthere/upfs --username=jmow@upthere.com Skyline /Users/JMow/Code/upthere/skyline
     /Users/JMow/Code/upthere/upfs --username=jmow@upthere.com ~upthere /Users/JMow/Code/upthere/updrive
 }
@@ -25,6 +25,13 @@ alias cp='cp -i'
 alias less='less -F'
 alias t='date -u "+%Y-%m-%dT%H:%M:%S"'
 export histchars="!?#"
+
+lr() {
+    ls -R . | awk '
+    /:$/&&f{s=$0;f=0}
+    /:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
+    NF&&f{ print s"/"$0 }'
+}
 
 # GIT ALII #
 alias st='git status'
