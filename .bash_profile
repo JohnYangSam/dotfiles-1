@@ -1,5 +1,6 @@
 # Upthere Android Env Setup #
 upthere_src=/Users/jmow/Code/upthere
+UPTHERE_ROOT=/Users/jmow/Code/upthere
 scripts=/Users/jmow/Code/dotfiles/scripts
 
 export ANDROID_SDK_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx
@@ -88,7 +89,7 @@ export CLICOLOR=1
 export LSCOLORS=BxHxFxDxCxegedabagacad
 export EDITOR=vi
 
-FILE SYSTEM SEARCH AND JUMP #
+# FILE SYSTEM SEARCH AND JUMP #
 bashconfig() {
     vi ~/.bash_profile
     source ~/.bash_profile
