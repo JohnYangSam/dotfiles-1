@@ -18,7 +18,7 @@ upthere() {
 	launchctl unload ~/Library/LaunchAgents/com.upthere.rest_bridge.plist
 	launchctl load ~/Library/LaunchAgents/com.upthere.rest_bridge.plist
 }
-fuse() {
+upfuse() {
 	/Users/jmow/upfs --username=jmow@upthere.com ~upthere /Users/jmow/updrive
 	/Users/jmow/upfs --username=jmow@upthere.com Skyline /Users/jmow/skyline
 }
@@ -53,8 +53,9 @@ export histchars="!?#"
 # GIT ALII #
 alias st='git status'
 alias log='git log'
-alias gitsearch='git rev-list --all | xargs git grep -F'
+alias gs='git rev-list --all | xargs git grep -F'
 alias stash='git stash'
+alias fetch='git fetch --all'
 alias pull='git pull --rebase'
 alias push='git push'
 
@@ -62,6 +63,7 @@ alias co='git checkout'
 alias cherry='git cherry-pick'
 alias ca='git commit -am'
 alias cm='git commit -m'
+alias amend='git commit --amend'
 alias br='git branch'
 
 # Git Assume/Unassume unchanged #
