@@ -36,8 +36,9 @@ lr() {
 # GIT ALII #
 alias st='git status'
 alias log='git log'
-alias gitsearch='git rev-list --all | xargs git grep -F'
+alias gs='git rev-list --all | xargs git grep -F'
 alias stash='git stash'
+alias fetch='git fetch --all'
 alias pull='git pull --rebase'
 alias push='git push'
 alias br='git branch'
@@ -46,6 +47,7 @@ alias co='git checkout'
 alias cherry='git cherry-pick'
 alias ca='git commit -am'
 alias cm='git commit -m'
+alias amend='git commit --amend'
 
 # Git Assume/Unassume unchanged #
 alias assume='git update-index --assume-unchanged'
