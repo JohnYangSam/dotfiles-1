@@ -4,6 +4,11 @@ upfuse() {
     /Users/JMow/Code/upthere/upfs --username=jmow@upthere.com ~upthere /Users/JMow/Code/upthere/updrive
 }
 
+fits() {
+    cd /Users/JMow/Code/upthere/upthere;
+    ./bin/rest_bridge
+}
+
 # FILE JUMPS #
 alias home='j ~/'
 alias cis121='j ~/School/cis121/12fa/'
