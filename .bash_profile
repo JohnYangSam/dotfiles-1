@@ -74,6 +74,8 @@ alias cm='git commit -m'
 alias amend='git commit --amend'
 alias br='git branch'
 
+source ./.git-completion.bash
+
 # Git Assume/Unassume unchanged #
 alias assume='git update-index --assume-unchanged'
 alias unassume='git update-index --no-assume-unchanged'
