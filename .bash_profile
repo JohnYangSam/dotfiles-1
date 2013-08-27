@@ -49,6 +49,8 @@ alias ca='git commit -am'
 alias cm='git commit -m'
 alias amend='git commit --amend'
 
+source ./.git-completion.bash
+
 # Git Assume/Unassume unchanged #
 alias assume='git update-index --assume-unchanged'
 alias unassume='git update-index --no-assume-unchanged'
