@@ -95,7 +95,7 @@ alias cm='git commit -m'
 alias amend='git commit --amend'
 alias br='git branch'
 
-source ./.git-completion.bash
+source ~/.git-completion.bash
 
 recheck() {
 	if echo $* | grep -e "-f" -q
