@@ -1,11 +1,26 @@
 # Upthere Android Env Setup #
 upthere_src=/Users/jmow/Code/upthere
-UPTHERE_ROOT=/Users/jmow/Code/upthere
 scripts=/Users/jmow/Code/dotfiles/scripts
 
-export ANDROID_SDK_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx
-export ANDROID_NDK_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-ndk-r8e
+# review() {
+# 	git push --receive-pack='git receive-pack --reviewer=$1@upthere.com' gerrit HEAD:refs/for/master
+# }
+
+alias review='git push gerrit HEAD:refs/for/master'
+alias alphar='git push gerrit HEAD:refs/for/release/Alpha'
+
+UPTHERE_ROOT=/Users/jmow/Code/upthere
+export UPTHERE_ROOT
+PYTHONPATH=/Users/jmow/Code:PYTHONPATH
+export PYTHONPATH
+
+export ANDROID_SDK_HOME=/Applications/Android\ Studio.app/sdk
+#export ANDROID_SDK_HOME=/Users/jmow/Code/adt-bundle-mac-x86_64-20130522/sdk
+export ANDROID_NDK_HOME=/Users/jmow/Code/android_tools/android-ndk-r9
 export NDK_BASE=$ANDROID_NDK_HOME
+export ANDROID_STANDALONE_NDK=/Users/jmow/Code/android_tools/standalone-ndk
+export GRADLE_HOME=/usr/local/bin/gradle
+
 ulimit -n 10000
 fits() {
 	cd $upthere_src
@@ -27,6 +42,10 @@ upfuse() {
 logcat() {
 	cd $scripts
 	./colored_logcat.py $@
+}
+
+androidbox() {
+	ssh androidbox.upthere.com
 }
 
 # FILE JUMPS #
@@ -66,6 +85,8 @@ alias stash='git stash'
 alias fetch='git fetch --all'
 alias pull='git pull --rebase'
 alias push='git push'
+alias pushall='git push origin && git push upstream'
+alias pushalltags='git push origin && git push origin --tags && git push upstream && git push upstream --tags'
 
 alias co='git checkout'
 alias cherry='git cherry-pick'
@@ -76,6 +97,16 @@ alias br='git branch'
 
 source ./.git-completion.bash
 
+recheck() {
+	if echo $* | grep -e "-f" -q
+	then
+		echo "Force Deleting Branch for Recheckout"
+		br -D $1 && co -b $1
+	else
+		br -d $1 && co -b $1
+	fi
+}
+
 # Git Assume/Unassume unchanged #
 alias assume='git update-index --assume-unchanged'
 alias unassume='git update-index --no-assume-unchanged'
@@ -85,7 +116,7 @@ alias assumed='git ls-files -v | grep ^h | cut -c 3-'
 alias python27='python'
 alias pyclean='rm -f *pyc'
 alias py='env/bin/python'
-alias env='source env/bin/activate'
+alias pyenv='source env/bin/activate'
 alias json="python -mjson.tool"
 
 md() {
@@ -110,6 +141,10 @@ fs() {
 
 j() {
     $(jump.py $@) && pwd && ls
+}
+
+app() {
+    open -a "$@"
 }
 
 slime() {
@@ -201,8 +236,11 @@ function server() {
     python -m SimpleHTTPServer "$port"
 }
 
-export PATH=/usr/local/bin:/Users/jmow/Code/dotfiles/scripts:/Users/jmow/Code/android_tools_macosx_r8e/android-ndk-r8e:/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx/platform-tools:/Users/jmow/Code/android_tools_macosx_r8e/android-sdk-macosx/tools:"$PATH"
-export ANDROID_HOME=/Users/jmow/Code/android_tools_macosx_r8e/android-ndk-r8e
+export PATH=/usr/local/bin:/Users/jmow/Code/dotfiles/scripts:$ANDROID_NDK_HOME:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/build-tools/18.0.1:$ANDROID_SDK_HOME/build-tools/18.0.1/lib:"$PATH"
+
+export ANDROID_HOME=$ANDROID_SDK_HOME
+UPPY_ROOT=/Users/jmow/Code
+PYTHONPATH=$PYTHONPATH:$UPPY_ROOT
 
 set -o vi
 alias :q='clear'
