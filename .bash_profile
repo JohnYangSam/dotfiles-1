@@ -254,7 +254,9 @@ function seasprint() {
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-export PATH="$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin:/Applications/eclipse/android-sdk-macosx/platform-tools
+# export ANDROID_HOME="/Applications/eclipse/android-sdk-macosx"
+export ANDROID_HOME="/Users/JMow/android-sdks"
+export PATH="$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin:$ANDROID_HOME/platform-tools
 
 export PYTHONSTARTUP=/Users/JMow/.pythonrc
 export EC2_PRIVATE_KEY=/Users/JMow/.ec2/access.pem
