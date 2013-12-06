@@ -265,5 +265,7 @@ export EC2_CERT=/Users/JMow/.ec2/cert.pem
 fortune -s -a | cowthink -f dragon-and-cow | lolcat
 # fortune | cowsay -s | lolcat
 
+source .bash_mac;
+
 set -o vi
 alias :q='clear'

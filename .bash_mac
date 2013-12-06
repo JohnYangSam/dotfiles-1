@@ -1,0 +1,41 @@
+# Mac OS X Terminal Tricks #
+
+# Accepts arg [end, start, middle]
+mvdock() {
+    defaults write com.apple.dock pinning -string $1;
+    killall Dock;
+}
+
+# Accepts arg [true, false]
+hidden_files() {
+    defaults write com.apple.finder AppleShowAllFiles $1;
+    killall Dock;
+}
+
+# Accepts arg [true, false]
+single_app() {
+    defaults write com.apple.dock single-app -bool $1;
+    killall Dock;
+}
+
+# Accepts arg [true, false]
+quicklook_copy() {
+    defaults write com.apple.finder QLEnableTextSelection -bool $1;
+    killall Finder;
+}
+
+# Set whether Preview / Quicktime should save open windows on re-open
+# Accepts arg [true, false]
+save_windows() {
+    defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool $1;
+    defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool $1;
+}
+
+# Sets computer to stay awake for one hour, or [arg] seconds
+stay_awake() {
+    if [ $# -eq 0 ]; then
+        caffeinate -t 3600;
+    else
+        caffeinate -t $1;
+    fi
+}
