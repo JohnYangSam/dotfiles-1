@@ -262,10 +262,13 @@ export PYTHONSTARTUP=/Users/JMow/.pythonrc
 export EC2_PRIVATE_KEY=/Users/JMow/.ec2/access.pem
 export EC2_CERT=/Users/JMow/.ec2/cert.pem
 
+ln -s /Users/JMow/Code/.bash_mac /Users/JMow/.bash_mac
+ln -s /Users/JMow/Code/.git-completion.bash /Users/JMow/.git-completion.bash
+source ~/.bash_mac;
+source ~/.git-completion.bash
+
 fortune -s -a | cowthink -f dragon-and-cow | lolcat
 # fortune | cowsay -s | lolcat
-
-source .bash_mac;
 
 set -o vi
 alias :q='clear'
