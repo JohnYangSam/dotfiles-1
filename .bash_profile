@@ -53,8 +53,7 @@ alias cherry='git cherry-pick'
 alias ca='git commit -am'
 alias cm='git commit -m'
 alias amend='git commit --amend'
-
-source ~/.git-completion.bash
+alias gdiff='git diff -w'
 
 # Git Assume/Unassume unchanged #
 alias assume='git update-index --assume-unchanged'
