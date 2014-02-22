@@ -7,19 +7,20 @@ scripts=/Users/jmow/Code/dotfiles/scripts
 # }
 
 alias review='git push gerrit HEAD:refs/for/master'
-alias alphar='git push gerrit HEAD:refs/for/release/Alpha'
 
 UPTHERE_ROOT=/Users/jmow/Code/upthere
 export UPTHERE_ROOT
 PYTHONPATH=/Users/jmow/Code:PYTHONPATH
 export PYTHONPATH
 
-export ANDROID_SDK_HOME=/Applications/Android\ Studio.app/sdk
-#export ANDROID_SDK_HOME=/Users/jmow/Code/adt-bundle-mac-x86_64-20130522/sdk
+#export ANDROID_SDK_HOME=/Applications/Android\ Studio.app/sdk
+export ANDROID_SDK_HOME=/Users/jmow/Code/android_tools/android-sdk-macosx
 export ANDROID_NDK_HOME=/Users/jmow/Code/android_tools/android-ndk-r9
 export NDK_BASE=$ANDROID_NDK_HOME
 export ANDROID_STANDALONE_NDK=/Users/jmow/Code/android_tools/standalone-ndk
 export GRADLE_HOME=/usr/local/bin/gradle
+
+alias studio='/Applications/Android\ Studio.app/Contents/MacOS/studio'
 
 ulimit -n 10000
 fits() {
