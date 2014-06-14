@@ -255,7 +255,7 @@ function seasprint() {
 
 # export ANDROID_HOME="/Applications/eclipse/android-sdk-macosx"
 export ANDROID_HOME="/Users/JMow/android-sdks"
-export PATH="$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin:$ANDROID_HOME/platform-tools
+export PATH=/usr/local/bin:"$PATH":/Users/JMow/Code/scripts:/Users/JMow/pebble-dev/arm-cs-tools/bin:$ANDROID_HOME/platform-tools
 
 export PYTHONSTARTUP=/Users/JMow/.pythonrc
 export EC2_PRIVATE_KEY=/Users/JMow/.ec2/access.pem
