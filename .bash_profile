@@ -9,6 +9,13 @@ fits() {
     ./bin/rest_bridge
 }
 
+#export ANDROID_SDK_HOME=/Applications/Android\ Studio.app/sdk
+export ANDROID_SDK_HOME=/Users/JMow/android_tools/android_sdks
+export ANDROID_NDK_HOME=/Users/JMow/android_tools/android-ndk-r9d
+export NDK_BASE=$ANDROID_NDK_HOME
+export ANDROID_STANDALONE_NDK=/Users/JMow/android_tools/standalone-ndk
+export GRADLE_HOME=/usr/local/bin/gradle
+
 # FILE JUMPS #
 alias home='j ~/'
 alias cis121='j ~/School/cis121/12fa/'
